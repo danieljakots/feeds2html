@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>body{margin:40px auto;max-width:650px;font-size:18px;font-family:sans-serif;color:#333;padding:0 10px}h1,h2,h3{line-height:1.2}.hidelink{color: #333;text-decoration:none;}h1{color:#CD0006}.responsive{max-width:100%;height:auto;}a:link{color:#CD0006;text-decoration:none;}a:hover{text-decoration:underline;}</style>
+
+    <title>Feeds converted to HTML</title>
+</head>
+<body>
+{% for feed in parsed_feeds %}
+{% for title, items in feed.items() %}
+    <h2>{{ title }}</h2>
+{% for item in items %}
+    <ul>
+        <li><a href="{{ item.link}}">{{ item.title }}</a></li>
+    </ul>
+{% endfor %}
+{% endfor %}
+{% endfor %}
+
+</body>
+</html>
