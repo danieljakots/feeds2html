@@ -17,7 +17,7 @@ def parse_feed(feed):
     title = feed['feed']['title']
     parsed_entries = []
     for n, entry in enumerate(feed["entries"]):
-        if n+1 > MAX_ENTRIES:
+        if n+1 > 100:
             break
         parsed_entry = {}
         parsed_entry["title"] = entry["title"]
