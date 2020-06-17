@@ -4,6 +4,7 @@
 #
 # Licensed under the MIT license. See the LICENSE file.
 
+import os
 import time
 
 import feedparser
@@ -33,11 +34,14 @@ def parse_feed(feed):
 
 
 def create_html(chunk_feeds):
-    with open("index.html.j2", "r") as f:
+    work_dir = os.path.dirname(__file__)
+    joined_path = os.path.join(work_dir, "index.html.j2")
+    with open(joined_path, "r") as f:
         template = f.read()
     jinja2_template = jinja2.Template(template)
     index = jinja2_template.render(chunk_feeds=chunk_feeds)
-    with open(f"index.html", "w") as f:
+    joined_path = os.path.join(work_dir, "index.html")
+    with open(joined_path, "w") as f:
         f.write(index)
         f.write("\n")
 
