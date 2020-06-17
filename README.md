@@ -6,3 +6,10 @@ simple HTML page that I can check whenever I want to see the last items. We
 don't keep any history as there is no point.
 
 Result is available here: <https://os.chown.me/>
+
+## Installation
+
+1. Put the script somewhere
+2. Install python packages *jinja2* and *feedparser*
+3. Run the script
+4. Serve the html page
