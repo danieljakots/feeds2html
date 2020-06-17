@@ -53,6 +53,20 @@ def main():
     feeds = []
     feeds.append("https://www.reddit.com/r/montreal/.rss")
     feeds.append("https://www.reddit.com/r/quebec/.rss")
+    feeds.append("https://www.reddit.com/r/metaquebec/.rss")
+    feeds.append("https://www.reddit.com/r/homelab/.rss")
+    feeds.append("https://www.reddit.com/r/homelabfr/.rss")
+    feeds.append("https://www.reddit.com/r/zfs/.rss")
+    feeds.append("https://www.reddit.com/r/datahoarder/.rss")
+    feeds.append("https://www.reddit.com/r/datacurator/.rss")
+    feeds.append("https://ici.radio-canada.ca/rss/4159")
+    feeds.append("https://www.lapresse.ca/actualites/rss")
+    feeds.append("https://www.ledevoir.com/rss/manchettes.xml")
+    feeds.append("https://www.journaldemontreal.com/rss.xml")
+    feeds.append("https://rss.cbc.ca/lineup/topstories.xml")
+    feeds.append("https://rss.cbc.ca/lineup/canada.xml")
+    feeds.append("https://rss.cbc.ca/lineup/world.xml")
+    feeds.append("https://rss.cbc.ca/lineup/canada-montreal.xml")
     parsed_feeds = []
     for feed in feeds:
         parsed_feeds.append(parse_feed(feed))
