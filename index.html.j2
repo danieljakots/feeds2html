@@ -8,8 +8,11 @@
     <title>Feeds converted to HTML</title>
 </head>
 <body>
+{% for parsed_feeds in chunk_feeds %}
+ <div class="row">
 {% for feed in parsed_feeds %}
 {% for title, items in feed.items() %}
+  <div class="column">
     <h2>{{ title }}</h2>
 {% for item in items %}
     <ul>
@@ -17,6 +20,9 @@
     </ul>
 {% endfor %}
 {% endfor %}
+</div>
+{% endfor %}
+</div>
 {% endfor %}
 
 </body>

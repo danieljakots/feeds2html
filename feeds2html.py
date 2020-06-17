@@ -9,7 +9,8 @@ import time
 import feedparser
 import jinja2
 
-MAX_ENTRIES = 10
+FEEDS_PER_LINE = 4
+MAX_ENTRIES = 9
 
 
 def parse_feed(feed):
@@ -25,19 +26,27 @@ def parse_feed(feed):
         parsed_entry["timestamp"] = time.mktime(entry["updated_parsed"])
         parsed_entries.append(parsed_entry)
     parsed_entries.sort(reverse=True, key=lambda i: i["timestamp"])
-    parsed_feed = {title: parsed_entries}
+    parsed_feed = {title: parsed_entries[:MAX_ENTRIES]}
 
+    # We need to parse more because their order is random so we may get older entries
     return parsed_feed
 
 
-def create_html(parsed_feeds):
+def create_html(chunk_feeds):
     with open("index.html.j2", "r") as f:
         template = f.read()
     jinja2_template = jinja2.Template(template)
-    index = jinja2_template.render(parsed_feeds=parsed_feeds)
+    index = jinja2_template.render(chunk_feeds=chunk_feeds)
     with open(f"index.html", "w") as f:
         f.write(index)
         f.write("\n")
+
+
+# https://stackoverflow.com/a/312464
+def chunks(lst, n):
+    """Yield successive n-sized chunks from lst."""
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
 
 
 def main():
@@ -47,7 +56,8 @@ def main():
     parsed_feeds = []
     for feed in feeds:
         parsed_feeds.append(parse_feed(feed))
-    create_html(parsed_feeds)
+    chunk_feeds = chunks(parsed_feeds, FEEDS_PER_LINE)
+    create_html(chunk_feeds)
 
 
 if __name__ == "__main__":
