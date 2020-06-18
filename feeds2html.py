@@ -67,7 +67,7 @@ def main():
     feeds.append("https://www.lapresse.ca/actualites/rss")
     feeds.append("https://www.ledevoir.com/rss/manchettes.xml")
     feeds.append("https://www.journaldemontreal.com/rss.xml")
-    feeds.append("https://rss.cbc.ca/lineup/topstories.xml")
+    feeds.append("https://lactualite.com/feed/")
     feeds.append("https://rss.cbc.ca/lineup/canada.xml")
     feeds.append("https://rss.cbc.ca/lineup/world.xml")
     feeds.append("https://rss.cbc.ca/lineup/canada-montreal.xml")
