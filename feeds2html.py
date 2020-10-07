@@ -11,7 +11,7 @@ import feedparser
 import jinja2
 
 FEEDS_PER_LINE = 4
-MAX_ENTRIES = 9
+MAX_ENTRIES = 19
 
 
 def parse_feed(feed):
