@@ -68,7 +68,11 @@ def main():
     for feed in feeds:
         if "http" not in feed:
             continue
-        parsed_feeds.append(parse_feed(feed))
+        try:
+            parsed_feeds.append(parse_feed(feed))
+        except KeyError:
+            print(f"{feed} is broken")
+            sys.exit(1)
     chunk_feeds = chunks(parsed_feeds, FEEDS_PER_LINE)
     create_html(chunk_feeds)
 
