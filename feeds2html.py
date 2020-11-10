@@ -5,6 +5,7 @@
 # Licensed under the MIT license. See the LICENSE file.
 
 import os
+import sys
 import time
 
 import feedparser
@@ -53,26 +54,20 @@ def chunks(lst, n):
         yield lst[i:i + n]
 
 
+def get_feeds_list():
+    if len(sys.argv) != 2:
+        print(f"usage: {sys.argv[0]} path/to/file/with/feeds")
+        sys.exit(1)
+    with open(sys.argv[1], "r") as f:
+        return f.read().split("\n")
+
+
 def main():
-    feeds = []
-    feeds.append("https://www.reddit.com/r/montreal/.rss")
-    feeds.append("https://www.reddit.com/r/quebec/.rss")
-    feeds.append("https://www.reddit.com/r/metaquebec/.rss")
-    feeds.append("https://www.reddit.com/r/selfhosted/.rss")
-    feeds.append("https://www.reddit.com/r/golang/.rss")
-    feeds.append("https://www.reddit.com/r/zfs/.rss")
-    feeds.append("https://www.reddit.com/r/datahoarder/.rss")
-    feeds.append("https://www.reddit.com/r/datacurator/.rss")
-    feeds.append("https://ici.radio-canada.ca/rss/4159")
-    feeds.append("https://www.lapresse.ca/actualites/rss")
-    feeds.append("https://www.ledevoir.com/rss/manchettes.xml")
-    feeds.append("https://www.journaldemontreal.com/rss.xml")
-    feeds.append("https://lactualite.com/feed/")
-    feeds.append("https://rss.cbc.ca/lineup/canada.xml")
-    feeds.append("https://rss.cbc.ca/lineup/world.xml")
-    feeds.append("https://rss.cbc.ca/lineup/canada-montreal.xml")
+    feeds = get_feeds_list()
     parsed_feeds = []
     for feed in feeds:
+        if "http" not in feed:
+            continue
         parsed_feeds.append(parse_feed(feed))
     chunk_feeds = chunks(parsed_feeds, FEEDS_PER_LINE)
     create_html(chunk_feeds)

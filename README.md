@@ -11,5 +11,6 @@ Result is available here: <https://os.chown.me/>
 
 1. Put the script somewhere
 2. Install python packages *jinja2* and *feedparser*
-3. Run the script
-4. Serve the html page
+3. Make a list of the feeds you're interested in, in a text file
+4. Run the script with the path of the text file as the argument
+5. Serve the html page
